@@ -2,12 +2,12 @@
 
 function fetchMatchingPasswordsArray($resultSet)
 {
-	$matches = array();
-	foreach ($resultSet as $row) {
-		if (!password_verify('password', $row['password'])) continue;
-		$matches[$row['id']] = $row;
-	}
-	return $matches;
+	return array_filter(
+		$resultSet->fetchAll(),
+		function ($row) {
+			return password_verify('password', $row['password']);
+		}
+	);
 }
 
 $pdo = require_once 'pdo.php';

@@ -4,7 +4,7 @@ function fetchMatchingPasswordsByGenerator($resultSet)
 {
 	foreach ($resultSet as $row) {
 		if (!password_verify('password', $row['password'])) continue;
-		yield $row['id'] => $row;
+		yield $row;
 	}
 }
 
