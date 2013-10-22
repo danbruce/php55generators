@@ -5,7 +5,7 @@ function fetchMatchingPasswordsArray($resultSet)
 	return array_filter(
 		$resultSet->fetchAll(),
 		function ($row) {
-			return password_verify('password', $row['password']);
+			return password_verify('password', $row['password']) ? $row : false;
 		}
 	);
 }
